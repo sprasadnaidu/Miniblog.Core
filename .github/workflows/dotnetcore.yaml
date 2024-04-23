@@ -30,21 +30,11 @@ jobs:
           cd ./publish
           zip -r my-dotnet-artifacts1.0.1.zip .
           mv my-dotnet-artifacts1.0.1.zip ../my-dotnet-artifacts1.0.1.zip
-      - name: Download and install Octopus CLI
-        run: >
-          wget
-          https://github.com/OctopusDeploy/OctopusCLI/releases/download/v9.1.7/OctopusTools.9.1.7.portable.tar.gz
-          -O octopuscli.tar.gz
+      - name: Install Octopus CLI 🐙
+        uses: OctopusDeploy/install-octopus-cli-action@v3
+        with:
+          version: '*'
 
-          tar -xzf octopuscli.tar.gz -C /tmp
-
-          ls -l /tmp
-
-          pwd
-
-          sudo mv /tmp/octo /usr/local/bin/Octo
-
-          sudo chmod +x /usr/local/bin/Octo
       - name: Check if Octo binary exists
         run: |
           if [ -f "/usr/local/bin/Octo" ]; then
@@ -55,6 +45,6 @@ jobs:
 
       - name: Push package to Octopus Deploy
         run: |
-          /home/runner/work/Miniblog.Core/Miniblog.Core/octo push --package ../my-dotnet-artifacts1.0.1.zip --replace-existing --server $OCTOPUS_CLI_SERVER --apiKey $OCTOPUS_CLI_API_KEY
+          Octo push --package ../my-dotnet-artifacts1.0.1.zip --replace-existing --server $OCTOPUS_CLI_SERVER --apiKey $OCTOPUS_CLI_API_KEY
 
 
