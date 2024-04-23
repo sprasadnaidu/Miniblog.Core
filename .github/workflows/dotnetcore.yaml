@@ -46,9 +46,5 @@ jobs:
           version: 1.0.1
       - name: Push a package to Octopus Deploy 🐙
         uses: OctopusDeploy/push-package-action@v3
-        env:
-          OCTOPUS_URL: 'https://cic.octopus.app'
-          OCTOPUS_API_KEY: ${{ secrets.API_KEY }}
-          OCTOPUS_SPACE: Default
         with:
           packages: my-dotnet-artifacts1.0.1.zip
