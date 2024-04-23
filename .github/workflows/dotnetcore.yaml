@@ -27,6 +27,24 @@ jobs:
     - name: Publish
       run: dotnet publish -c Release -o ./publish
 
+    - name: Create ZIP package
+      run: |
+        cd ./publish
+        zip -r my-dotnet-artifacts.zip .
+        mv my-dotnet-artifacts.zip ../my-dotnet-artifacts.zip
+
+    - name: Setup Octopus CLI
+      uses: octopusdeploy/cli/setup@v1
+      with:
+        version: '8.0.1'
+      env:
+        OCTOPUS_CLI_SERVER: ${{ secrets.OCTOPUS_SERVER_URL }}
+        OCTOPUS_CLI_API_KEY: ${{ secrets.OCTOPUS_API_KEY }}
+
+    - name: Push package to Octopus Deploy
+      run: |
+        octo push --package ../my-dotnet-artifacts.zip --replace-existing --server $OCTOPUS_CLI_SERVER --apiKey $OCTOPUS_CLI_API_KEY
+
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
       with:
