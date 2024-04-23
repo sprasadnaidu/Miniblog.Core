@@ -54,6 +54,6 @@ jobs:
           fi
       - name: Push package to Octopus Deploy
         run: |
-          /usr/local/bin/octo push --package ../my-dotnet-artifacts1.0.1.zip --replace-existing --server $OCTOPUS_CLI_SERVER --apiKey $OCTOPUS_CLI_API_KEY
+          octo push --package ../my-dotnet-artifacts1.0.1.zip --replace-existing --server $OCTOPUS_CLI_SERVER --apiKey $OCTOPUS_CLI_API_KEY
 
 
