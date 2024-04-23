@@ -25,15 +25,13 @@ jobs:
           cd ./publish
           zip -r my-dotnet-artifacts.zip .
           mv my-dotnet-artifacts.zip ../my-dotnet-artifacts.zip
+
       - name: Download and install Octopus CLI
-        run: >
-          wget
-          https://github.com/OctopusDeploy/OctopusCLI/releases/download/v9.1.7/OctopusTools.9.1.7.portable.tar.gz
-          -O octopuscli.tar.gztar -xzf octopuscli.tar.gz
+        run: |
+          wget https://github.com/OctopusDeploy/OctopusCLI/releases/download/v9.1.7/OctopusTools.9.1.7.portable.tar.gz -O octopuscli.tar.gz
+          tar -xzf octopuscli.tar.gz -C /tmp
+          sudo mv /tmp/Octo /usr/local/bin/Octo
 
-          chmod +x Octo
-
-          sudo mv Octo /usr/local/bin/Octo
       - name: Push package to Octopus Deploy
         run: >
           Octo push --package ../my-package.zip --replace-existing --server
