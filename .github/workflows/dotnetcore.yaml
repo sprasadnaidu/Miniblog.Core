@@ -9,9 +9,9 @@ env:
   OCTOPUS_API_KEY: ${{ secrets.OCTOPUS_API_KEY }}
   OCTOPUS_SPACE: Default
 jobs:
-  build:
+  Build:
     runs-on: ubuntu-latest
-    steps:
+    Steps:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Setup .NET Core
@@ -27,7 +27,7 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: my-dotnet-artifacts
+          name: My-dotnet-artifacts
           path: ./publish
       - name: Create ZIP package
         run: |
