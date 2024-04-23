@@ -36,7 +36,7 @@ jobs:
     - name: Setup Octopus CLI
       uses: octopusdeploy/cli/setup@v1
       with:
-        version: '8.0.1'
+        version: '7.4.0'
       env:
         OCTOPUS_CLI_SERVER: ${{ secrets.OCTOPUS_SERVER_URL }}
         OCTOPUS_CLI_API_KEY: ${{ secrets.OCTOPUS_API_KEY }}
