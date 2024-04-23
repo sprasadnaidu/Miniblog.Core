@@ -34,7 +34,7 @@ jobs:
         mv my-dotnet-artifacts.zip ../my-dotnet-artifacts.zip
 
     - name: Setup Octopus CLI
-      uses: octopusdeploy/cli/setup@v1
+      uses: octopusdeploy/cli-setup-action@v1
       with:
         version: '7.4.0'
       env:
