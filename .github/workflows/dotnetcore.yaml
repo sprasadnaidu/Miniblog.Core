@@ -25,34 +25,35 @@ jobs:
         with:
           name: my-dotnet-artifacts
           path: ./publish
-
       - name: Create ZIP package
         run: |
           cd ./publish
           zip -r my-dotnet-artifacts1.0.1.zip .
           mv my-dotnet-artifacts1.0.1.zip ../my-dotnet-artifacts1.0.1.zip
-
       - name: Download and install Octopus CLI
-        run: |
-          wget https://github.com/OctopusDeploy/OctopusCLI/releases/download/v9.1.7/OctopusTools.9.1.7.portable.tar.gz -O octopuscli.tar.gz
+        run: >
+          wget
+          https://github.com/OctopusDeploy/OctopusCLI/releases/download/v9.1.7/OctopusTools.9.1.7.portable.tar.gz
+          -O octopuscli.tar.gz
+
           tar -xzf octopuscli.tar.gz -C /tmp
+
           ls -l /tmp
+
           pwd
+
           sudo mv /tmp/octo /usr/local/bin/Octo
+
           sudo chmod +x /usr/local/bin/Octo
-
       - name: Check if Octo binary exists
-          run: |
-            if [ -f "/usr/local/bin/Octo" ]; then
-              echo "Octo binary found"
-            else
-              echo "Octo binary not found"
-            fi
-
-      - name: Push package to Octopus Deploy
         run: |
+          if [ -f "/usr/local/bin/Octo" ]; then
+              echo "Octo binary found"
+          else
+              echo "Octo binary not found"
+          fi
+      - name: Push package to Octopus Deploy
+        run: >
           export PATH="$PATH:/usr/local/bin"
+
           Octo push --package ../my-dotnet-artifacts1.0.1.zip --replace-existing --server $OCTOPUS_CLI_SERVER --apiKey $OCTOPUS_CLI_API_KEY
-
-
-
