@@ -55,6 +55,6 @@ jobs:
 
       - name: Push package to Octopus Deploy
         run: |
-          /home/runner/.dotnet/octo push --package ../my-dotnet-artifacts1.0.1.zip --replace-existing --server $OCTOPUS_CLI_SERVER --apiKey $OCTOPUS_CLI_API_KEY
+          /home/runner/work/Miniblog.Core/Miniblog.Core/octo push --package ../my-dotnet-artifacts1.0.1.zip --replace-existing --server $OCTOPUS_CLI_SERVER --apiKey $OCTOPUS_CLI_API_KEY
 
 
