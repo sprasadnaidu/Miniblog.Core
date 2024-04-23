@@ -53,7 +53,6 @@ jobs:
               echo "Octo binary not found"
           fi
       - name: Push package to Octopus Deploy
-        run: >
-          export PATH="$PATH:/usr/local/bin"
+        run: |
+          /usr/local/bin/Octo push --package ../my-dotnet-artifacts1.0.1.zip --replace-existing --server $OCTOPUS_CLI_SERVER --apiKey $OCTOPUS_CLI_API_KEY
 
-          Octo push --package ../my-dotnet-artifacts1.0.1.zip --replace-existing --server $OCTOPUS_CLI_SERVER --apiKey $OCTOPUS_CLI_API_KEY
