@@ -51,4 +51,4 @@ jobs:
           OCTOPUS_API_KEY: ${{ secrets.API_KEY }}
           OCTOPUS_SPACE: Default
         with:
-          package: my-dotnet-artifacts1.0.1.zip
+          packages: my-dotnet-artifacts1.0.1.zip
