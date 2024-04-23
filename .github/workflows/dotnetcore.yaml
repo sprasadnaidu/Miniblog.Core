@@ -30,7 +30,9 @@ jobs:
         run: |
           wget https://github.com/OctopusDeploy/OctopusCLI/releases/download/v9.1.7/OctopusTools.9.1.7.portable.tar.gz -O octopuscli.tar.gz
           tar -xzf octopuscli.tar.gz -C /tmp
+          ls -l /tmp
           sudo mv /tmp/Octo /usr/local/bin/Octo
+
 
       - name: Push package to Octopus Deploy
         run: >
