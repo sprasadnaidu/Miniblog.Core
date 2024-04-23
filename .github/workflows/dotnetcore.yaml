@@ -33,17 +33,17 @@ jobs:
         zip -r my-dotnet-artifacts.zip .
         mv my-dotnet-artifacts.zip ../my-dotnet-artifacts.zip
 
-    - name: Setup Octopus CLI
-      uses: octopusdeploy/action-setup-cli@v1
-      with:
-        version: '7.4.0'
-      env:
-        OCTOPUS_CLI_SERVER: ${{ secrets.OCTOPUS_SERVER_URL }}
-        OCTOPUS_CLI_API_KEY: ${{ secrets.OCTOPUS_API_KEY }}
+    - name: Download and install Octopus CLI
+      run: |
+        wget https://github.com/OctopusDeploy/OctopusCLI/releases/download/v7.4.0/OctopusTools.7.4.0.portable.tar.gz -O octopuscli.tar.gz
+    tar -xzf octopuscli.tar.gz
+        chmod +x Octo
+        sudo mv Octo /usr/local/bin/Octo
 
     - name: Push package to Octopus Deploy
       run: |
-        octo push --package ../my-dotnet-artifacts.zip --replace-existing --server $OCTOPUS_CLI_SERVER --apiKey $OCTOPUS_CLI_API_KEY
+        Octo push --package ../my-package.zip --replace-existing --server $OCTOPUS_CLI_SERVER --apiKey $OCTOPUS_CLI_API_KEY
+
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
