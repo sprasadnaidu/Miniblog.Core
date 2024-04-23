@@ -24,7 +24,7 @@ jobs:
         run: |
           cd ./publish
           zip -r my-dotnet-artifacts.zip .
-          mv my-dotnet-artifacts.zip ../my-dotnet-artifacts.zip
+          mv my-dotnet-artifacts1.0.1.zip ../my-dotnet-artifacts1.0.1.zip
 
       - name: Download and install Octopus CLI
         run: |
@@ -35,11 +35,11 @@ jobs:
           sudo mv /tmp/octo /usr/local/bin/Octo
 
 
-
       - name: Push package to Octopus Deploy
         run: >
-          Octo push --package ../my-package.zip --replace-existing --server
+          Octo push --package ../my-dotnet-artifacts1.0.1.zip --replace-existing --server
           $OCTOPUS_CLI_SERVER --apiKey $OCTOPUS_CLI_API_KEY
+
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
         with:
