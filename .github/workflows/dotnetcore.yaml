@@ -50,8 +50,6 @@ jobs:
       - name: Push build information to Octopus Deploy 🐙
         uses: OctopusDeploy/push-build-information-action@v3
         with:
-          server: ${{ secrets.OCTOPUS_URL }}
-          api_key: ${{ secrets.OCTOPUS_API_KEY }}
           packages: |
             'my-dotnet-artifacts'
           version: '1.0.1'
