@@ -20,6 +20,12 @@ jobs:
         run: dotnet build --configuration Release --no-restore
       - name: Publish
         run: dotnet publish -c Release -o ./publish
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-dotnet-artifacts
+          path: ./publish
+
       - name: Create ZIP package
         run: |
           cd ./publish
@@ -33,15 +39,10 @@ jobs:
           ls -l /tmp
           pwd
           sudo mv /tmp/octo /usr/local/bin/Octo
-
+          sudo chmod +x /usr/local/bin/Octo
 
       - name: Push package to Octopus Deploy
-        run: >
-          Octo push --package ../my-dotnet-artifacts1.0.1.zip --replace-existing --server
-          $OCTOPUS_CLI_SERVER --apiKey $OCTOPUS_CLI_API_KEY
+        run: |
+          /usr/local/bin/Octo push --package ../my-dotnet-artifacts1.0.1.zip --replace-existing --server $OCTOPUS_CLI_SERVER --apiKey $OCTOPUS_CLI_API_KEY
 
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: my-dotnet-artifacts
-          path: ./publish
+
