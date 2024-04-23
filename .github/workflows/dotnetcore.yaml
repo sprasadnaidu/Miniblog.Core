@@ -41,6 +41,14 @@ jobs:
           sudo mv /tmp/octo /usr/local/bin/Octo
           sudo chmod +x /usr/local/bin/Octo
 
+      - name: Check if Octo binary exists
+          run: |
+            if [ -f "/usr/local/bin/Octo" ]; then
+              echo "Octo binary found"
+            else
+              echo "Octo binary not found"
+            fi
+
       - name: Push package to Octopus Deploy
         run: |
           export PATH="$PATH:/usr/local/bin"
