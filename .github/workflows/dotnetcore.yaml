@@ -28,7 +28,7 @@ jobs:
       - name: Download and install Octopus CLI
         run: >
           wget
-          https://github.com/OctopusDeploy/OctopusCLI/releases/download/v7.4.0/OctopusTools.7.4.0.portable.tar.gz
+          https://github.com/OctopusDeploy/OctopusCLI/releases/download/v9.1.7/OctopusTools.9.1.7.portable.tar.gz
           -O octopuscli.tar.gztar -xzf octopuscli.tar.gz
 
           chmod +x Octo
