@@ -1,10 +1,10 @@
-name: Build and deploy .NET Core application to Web App MiniblogCore20240424143003
+name: Build and deploy .NET Core application to Web App MiniblogCoreWebSite
 on:
   push:
     branches:
     - master
 env:
-  AZURE_WEBAPP_NAME: MiniblogCore20240424143003
+  AZURE_WEBAPP_NAME: MiniblogCoreWebSite
   AZURE_WEBAPP_PACKAGE_PATH: src\publish
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 8.0.x
@@ -44,5 +44,5 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.MiniblogCore20240424143003_46F3 }}
+        publish-profile: ${{ secrets.MiniblogCoreWebSite_87F6 }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
