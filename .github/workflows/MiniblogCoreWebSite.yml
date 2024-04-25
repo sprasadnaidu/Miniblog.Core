@@ -1,4 +1,4 @@
-name: Build and deploy .NET Core application to Web App MiniblogCoreWebSite
+name: Build and deploy .NET Core application to Web App MiniblogCoreWebSite.
 on:
   push:
     branches:
