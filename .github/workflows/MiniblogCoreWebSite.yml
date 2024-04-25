@@ -47,3 +47,4 @@ jobs:
         uses: OctopusDeploy/push-package-action@v3
         with:
           packages: my-dotnet-artifacts1.0.1.zip
+          overwrite_mode: OverwriteExisting
